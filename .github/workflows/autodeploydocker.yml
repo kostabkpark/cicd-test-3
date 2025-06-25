@@ -50,8 +50,6 @@ jobs:
           script_stop: true
           script: |
             # dockerhub 에 토큰을 가지고 로그인 (private 인 경우에는 로그인 해야 하지만, public 인 경우에는 생략 가능)
-#            echo ${{ secrets.D}}
-#            docker login -u ${{ secrets.DOCKER_USER}} -- password
             # 기존에 실행되던 컨테이너 중지 && 삭제
             docker stop myweb || true
             docker rm myweb || true
@@ -59,9 +57,3 @@ jobs:
             docker pull ${{ secrets.DOCKER_USER }}/web-app:latest 
             # 새로운 컨테이너를 실행
             docker run -d --name myweb -p 8080:8080 ${{ secrets.DOCKER_USER }}/web-app:latest
-
-
-
-
-
-
